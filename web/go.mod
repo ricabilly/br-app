@@ -1,4 +1,4 @@
-module br-app/api
+module br-app/web
 
 go 1.16
 

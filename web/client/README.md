@@ -1,4 +1,4 @@
-# br-client
+# client
 
 ## Project setup
 ```
