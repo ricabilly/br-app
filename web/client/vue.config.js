@@ -1,5 +1,5 @@
 module.exports = {
   pwa: {
-    name: 'Chalk Wars'
-  }
-}
+    name: "Chalk Wars",
+  },
+};
