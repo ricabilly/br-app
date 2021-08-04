@@ -1,17 +1,15 @@
 package router
 
 import (
+	Routes "br-app/api/router/routes"
+
 	"github.com/gorilla/mux"
 )
 
-type RouteHandler struct {
-	Router *mux.Router
-}
-
-func NewRouter() *RouteHandler {
-	var routeHandler RouteHandler
-
+func NewRouter() *mux.Router {
 	router := mux.NewRouter().StrictSlash(true)
-	routeHandler.Router = router
-	return &routeHandler
+
+	Routes.BindRoutes(router)
+
+	return router
 }

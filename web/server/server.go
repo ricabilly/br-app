@@ -1,11 +1,11 @@
 package server
 
 import (
+	RouterFactory "br-app/web/router"
 	"log"
 	"net/http"
 	"strconv"
 	"time"
-	RouterHandlers "br-app/web/router"
 )
 
 // Server object type
@@ -25,13 +25,13 @@ func (s *Server) Start() {
 func NewServer(port int) *Server {
 	var server Server
 
-	routerHandler := RouterHandlers.NewRouterHandler()
+	router := RouterFactory.NewRouter()
 
 	server.Port = port
 	server.Addr = ":" + strconv.Itoa(port)
 	server.HTTPServer = &http.Server{
 		Addr:         server.Addr,
-		Handler:      routerHandler.Router,
+		Handler:      router,
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 10 * time.Second,
 	}

@@ -1,12 +1,16 @@
 package routes
 
 import (
+	"net/http"
 
+	"github.com/gorilla/mux"
 )
 
+func BindRoutes(r *mux.Router) {
 
-type Routes []Route
+	r.HandleFunc("/health", health)
+}
 
-type Route struct {
-	
+func health(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Healthy!"))
 }
