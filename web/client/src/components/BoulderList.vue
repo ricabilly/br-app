@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="boulder-list">
     <BoulderListEntry
       v-for="(entry, index) in boulders"
       :key="index"
@@ -17,19 +17,16 @@ export default {
   },
   data() {
     return {
-      boulders: [
-        {
-          id: 1,
-          name: "Dachschaden",
-          difficulty: "B5",
-          tags: ["tag1", "tag2"],
-        },
-        { id: 2, name: "Witniss the fitniss", difficulty: "B5", tags: [] },
-      ],
+      boulders: [],
     };
+  },
+  created() {
+    this.boulders = require("@/data/mockdata.json");
   },
 };
 </script>
 <style lang="scss">
-    
+.boulder-list {
+    display: flex;
+}
 </style>

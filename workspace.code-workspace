@@ -1,10 +1,10 @@
 {
 	"folders": [
 		{
-			"path": "./web"
+			"path": "./web/client"
 		},
 		{
-			"path": "./web/client"
+			"path": "./web"
 		},
 		{
 			"path": "./api"

@@ -18,7 +18,7 @@ func NewRouter() *mux.Router {
 	r.HandleFunc("/health", health).Name("health")
 
 	// Serve static assets directly.
-	r.PathPrefix("/").Handler(http.FileServer(http.Dir("client/"))).Name("static")
+	r.PathPrefix("/").Handler(http.FileServer(http.Dir("client/dist/"))).Name("static")
 
 	return r
 }
