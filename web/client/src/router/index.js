@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "@/views/Home.vue";
+import Overview from "@/views/Overview.vue";
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    name: "Overview",
+    component: Overview,
   },
   {
     path: "/grundriss",
@@ -18,6 +18,12 @@ const routes = [
     name: "Login",
     component: () =>
       import(/* webpackChunkName: "login" */ "@/views/Login.vue"),
+  },
+  {
+    path: "/boulder/view/:id",
+    name: "Boulder View",
+    component: () =>
+      import(/* webpackChunkName: "boulder-view" */ "@/views/BoulderView.vue"),
   },
 ];
 

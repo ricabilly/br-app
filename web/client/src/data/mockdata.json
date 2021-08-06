@@ -1,0 +1,110 @@
+[
+    {
+        "id": 1,
+        "name": "Dachschaden",
+        "difficulty": "B5",
+        "tags": [
+            "tag1", 
+            "tag2"
+        ],
+        "image": "logo.png",
+        "date": "2021-12-31",
+        "creator": "Rici",
+        "rating": 4,
+        "sector": "C2",
+        "colour": "Gelb",
+        "description": "Das ist wirklich eine ganze wunderbare Tour",
+        "comments": [
+            {
+                "author": "Gabse",
+                "content": "Boa was schraubst du wieder fürn Schmarrn!"
+            },
+            {
+                "author": "Markus",
+                "content": "Toller Boulder aber viel zu viel Chalk überall!"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Mikrowelle",
+        "difficulty": "B2",
+        "tags": [
+            "tag1", 
+            "tag2"
+        ],
+        "image": "logo.png",
+        "date": "2021-12-31",
+        "creator": "Rici",
+        "rating": 5,
+        "sector": "C2",
+        "colour": "Grün",
+        "description": "Zum aufwärmen ;)",
+        "comments": [
+            {
+                "author": "Gabse",
+                "content": "Boa was schraubst du wieder fürn Schmarrn!"
+            },
+            {
+                "author": "Markus",
+                "content": "Toller Boulder aber viel zu viel Chalk überall!"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Boulder 3",
+        "difficulty": "B2",
+        "tags": [
+            "tag1", 
+            "tag2"
+        ],
+        "image": "logo.png",
+        "date": "2021-12-31",
+        "creator": "Rici",
+        "rating": 1,
+        "sector": "C2",
+        "colour": "Grün",
+        "description": "Zum aufwärmen ;)",
+        "comments": [
+            {
+                "author": "Markus",
+                "content": "Toller Boulder aber viel zu viel Chalk überall!"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Boulder4",
+        "difficulty": "B2",
+        "tags": [
+            "tag1", 
+            "tag2"
+        ],
+        "image": "logo.png",
+        "date": "2021-12-31",
+        "creator": "Rici",
+        "rating": 5,
+        "sector": "C2",
+        "colour": "Grün",
+        "description": "Zum aufwärmen ;)",
+        "comments": []
+    },
+    {
+        "id": 5,
+        "name": "Boulder mit längerem Namen als die andern",
+        "difficulty": "B2",
+        "tags": [
+            "tag1", 
+            "tag2"
+        ],
+        "image": "logo.png",
+        "date": "2021-12-31",
+        "creator": "Rici",
+        "rating": 5,
+        "sector": "C2",
+        "colour": "Grün",
+        "description": "Zum aufwärmen ;)",
+        "comments": []
+    }
+]

@@ -6,7 +6,7 @@
 
 <script>
 // @ is an alias to /src
-import BoulderList from '@/components/BoulderList.vue';
+import BoulderList from "@/components/BoulderList.vue";
 
 export default {
   name: "Home",

@@ -1,13 +1,7 @@
 <template>
-    <div class="grundriss">
-        GRUNDRISS
-    </div>
+  <div class="grundriss">GRUNDRISS</div>
 </template>
 <script>
-export default {
-    
-}
+export default {};
 </script>
-<style lang="scss">
-    
-</style>
+<style lang="scss"></style>

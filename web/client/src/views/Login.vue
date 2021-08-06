@@ -1,13 +1,7 @@
 <template>
-    <div class="login">
-        LOGIN
-    </div>
+  <div class="login">LOGIN</div>
 </template>
 <script>
-export default {
-    
-}
+export default {};
 </script>
-<style lang="scss">
-    
-</style>
+<style lang="scss"></style>
