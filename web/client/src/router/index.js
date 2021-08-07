@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Overview from "@/views/Overview.vue";
+import BoulderList from "@/views/BoulderList.vue";
 
 const routes = [
   {
     path: "/",
-    name: "Overview",
-    component: Overview,
+    name: "BoulderList",
+    component: BoulderList,
   },
   {
     path: "/grundriss",

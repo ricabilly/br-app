@@ -49,6 +49,7 @@ export default {
   a {
     padding: 10px;
     display: block;
+    height: calc(100% - 20px);
   }
 
   &.is-active {

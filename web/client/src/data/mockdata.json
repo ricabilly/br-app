@@ -12,7 +12,7 @@
         "creator": "Rici",
         "rating": 4,
         "sector": "C2",
-        "colour": "Gelb",
+        "color": "Gelb",
         "description": "Das ist wirklich eine ganze wunderbare Tour",
         "comments": [
             {
@@ -38,7 +38,7 @@
         "creator": "Rici",
         "rating": 5,
         "sector": "C2",
-        "colour": "Grün",
+        "color": "Grün",
         "description": "Zum aufwärmen ;)",
         "comments": [
             {
@@ -64,7 +64,7 @@
         "creator": "Rici",
         "rating": 1,
         "sector": "C2",
-        "colour": "Grün",
+        "color": "Grün",
         "description": "Zum aufwärmen ;)",
         "comments": [
             {
@@ -86,7 +86,7 @@
         "creator": "Rici",
         "rating": 5,
         "sector": "C2",
-        "colour": "Grün",
+        "color": "Grün",
         "description": "Zum aufwärmen ;)",
         "comments": []
     },
@@ -103,7 +103,7 @@
         "creator": "Rici",
         "rating": 5,
         "sector": "C2",
-        "colour": "Grün",
+        "color": "Grün",
         "description": "Zum aufwärmen ;)",
         "comments": []
     }

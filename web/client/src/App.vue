@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div id="app-wrapper">
+    <router-view />
     <div id="nav">
       <router-link to="/">Übersicht</router-link>
       <router-link to="/grundriss">Grundriss</router-link>
@@ -9,9 +10,6 @@
         alt="Chalk Wars Logo"
         class="logo"
       />
-    </div>
-    <div class="container">
-      <router-view />
     </div>
   </div>
 </template>
@@ -40,6 +38,7 @@ $highlightcolor: hsl(153, 47%, 49%);
 body {
   margin: 0;
   background-color: $bgcolor;
+  height: 100vh;
 }
 
 a {
@@ -57,6 +56,8 @@ a {
 
 #nav {
   display: flex;
+  position: fixed;
+  bottom: 0;
   width: 100vw;
   align-items: center;
   justify-content: space-evenly;
@@ -66,7 +67,7 @@ a {
     font-weight: bold;
     padding: 0.5rem 1rem;
     width: 100%;
-    border-radius: 3px 3px 0 0;
+    border-radius: 0px 0px 3px 3px;
 
     &.router-link-exact-active {
       color: $highlightcolor;
