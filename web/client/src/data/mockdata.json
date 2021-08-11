@@ -8,7 +8,7 @@
             "tag2"
         ],
         "image": "logo.png",
-        "date": "2021-12-31",
+        "date": "2021-12-10T00:00:00.000Z",
         "creator": "Rici",
         "rating": 4,
         "sector": "C2",
@@ -34,9 +34,9 @@
             "tag2"
         ],
         "image": "logo.png",
-        "date": "2021-12-31",
+        "date": "2021-12-13T00:00:00.000Z",
         "creator": "Rici",
-        "rating": 5,
+        "rating": 2,
         "sector": "C2",
         "color": "Grün",
         "description": "Zum aufwärmen ;)",
@@ -60,8 +60,8 @@
             "tag2"
         ],
         "image": "logo.png",
-        "date": "2021-12-31",
-        "creator": "Rici",
+        "date": "2021-12-08T00:00:00.000Z",
+        "creator": "Matus",
         "rating": 1,
         "sector": "C2",
         "color": "Grün",
@@ -76,34 +76,34 @@
     {
         "id": 4,
         "name": "Boulder4",
-        "difficulty": "B2",
+        "difficulty": "B4",
         "tags": [
             "tag1", 
             "tag2"
         ],
         "image": "logo.png",
-        "date": "2021-12-31",
+        "date": "2021-11-10T00:00:00.000Z",
         "creator": "Rici",
         "rating": 5,
         "sector": "C2",
-        "color": "Grün",
+        "color": "Rot",
         "description": "Zum aufwärmen ;)",
         "comments": []
     },
     {
         "id": 5,
         "name": "Boulder mit längerem Namen als die andern",
-        "difficulty": "B2",
+        "difficulty": "B3",
         "tags": [
             "tag1", 
             "tag2"
         ],
         "image": "logo.png",
-        "date": "2021-12-31",
+        "date": "2021-12-10T00:00:00.000Z",
         "creator": "Rici",
-        "rating": 5,
+        "rating": 4,
         "sector": "C2",
-        "color": "Grün",
+        "color": "Lurchi",
         "description": "Zum aufwärmen ;)",
         "comments": []
     }

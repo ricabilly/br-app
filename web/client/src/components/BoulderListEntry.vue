@@ -18,6 +18,10 @@
         {{ boulder.difficulty }}
       </div>
 
+      <div id="rating">
+         	{{ boulder.rating }}&#10084;
+      </div>
+
       <div id="tags">
         <span v-for="(tag, index) in boulder.tags" :key="index" class="tag">
           {{ tag }}
@@ -59,6 +63,9 @@ export default {
 
   #name {
     font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   #madeBy {
@@ -68,6 +75,11 @@ export default {
   }
 
   #difficulty {
+    float: left;
+  }
+
+  #rating {
+    float: right;
   }
 
   #tags {

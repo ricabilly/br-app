@@ -25,6 +25,12 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "boulder-view" */ "@/views/BoulderView.vue"),
   },
+  {
+    path: "/boulder/add",
+    name: "Add Boulder",
+    component: () =>
+      import(/* webpackChunkName: "add-boulder" */ "@/views/AddBoulder.vue"),
+  },
 ];
 
 const router = createRouter({

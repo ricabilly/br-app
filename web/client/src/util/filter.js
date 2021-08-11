@@ -1,4 +1,4 @@
-const colors = [
+export const colors = [
     "ROT",
     "BLAU",
     "GELB",
@@ -18,9 +18,9 @@ const colors = [
     "BUNT"
 ];
 
-const sectors = ["A", "B", "C", "D", "E", "F", "G", "H", "DECKE"];
+export const sectors = ["A", "B", "C", "D", "E", "F", "G", "H", "DECKE"];
 
-const difficulties = ["B1", "B2", "B3", "B4", "B5", "B6", "B1-2", "B2-3", "B3-4", "B4-5", "B5-6"];
+export const difficulties = ["B1", "B1-2", "B2", "B2-3", "B3", "B3-4", "B4", "B4-5", "B5", "B5-6", "B6"];
 
 function contains(s1, s2) {
     if(s1 != null && s1.length > 0) {

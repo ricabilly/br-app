@@ -1,6 +1,13 @@
 <template>
 <div class="container">
   <div class="filter">
+    <select name="sort-by" id="sort-by" @change="updateSortBy($event.target)">
+      <optgroup label="Sortieren">
+        <option value="date">Neueste</option>
+        <option value="difficulty">Schwierigkeit</option>
+        <option value="rating">Bewertung</option>
+      </optgroup>
+    </select>
     <input v-model="searchText">
   </div>
   <div v-if="filteredBoulders.length === 0" class="no-boulder-list">
@@ -13,6 +20,7 @@
       :boulder="entry"
     ></BoulderListEntry>
   </div>
+  <div class="add-button" @click="toAddBoulderView"></div>
 </div>
 </template>
 <script>
@@ -27,12 +35,13 @@ export default {
   data() {
     return {
       searchText: "",
+      sortBy: "newest",
 
     };
   },
   computed: {
     boulders() {
-      return this.$store.getters.getBoulders;
+      return this.$store.getters.getBoulders(this.sortBy);
     },
     filteredBoulders() {
       if (this.searchText != "") {
@@ -41,6 +50,14 @@ export default {
         return this.boulders;
       }
     },
+  },
+  methods: {
+    updateSortBy(target) {
+      this.sortBy = target.value;
+    },
+    toAddBoulderView() {
+      this.$router.push("/boulder/add");
+    }
   },
 };
 </script>
@@ -56,12 +73,23 @@ export default {
   padding: 10px 0;
   margin-bottom: 5px;
 
-  justify-content: flex-end;
+  justify-content: space-between;
 
   input {
     width: 50%;
     font-size: 1.2rem;
   }
+}
+
+.add-button {
+  position: fixed;
+  bottom: 15%;
+  right: 15%;
+  background-color: lightblue;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 100%;
+  box-shadow: 0 0 3px lightgray;
 }
 
 </style>
