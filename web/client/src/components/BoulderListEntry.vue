@@ -84,11 +84,6 @@ export default {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    #difficulty {
-    }
-
-    #rating {
-    }
   }
 
   

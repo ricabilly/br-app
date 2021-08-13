@@ -10,11 +10,6 @@
       <router-link to="/">Übersicht</router-link>
       <router-link to="/grundriss">Grundriss</router-link>
       <router-link to="/login">Login</router-link>
-      <img
-        src="@/assets/chalk-wars-logo-small.png"
-        alt="Chalk Wars Logo"
-        class="logo"
-      />
     </div>
   </div>
 </template>
@@ -79,13 +74,6 @@ a {
       border-bottom: none;
       background-color: $bgcolor;
     }
-  }
-
-  img {
-    display: none;
-    width: 30px;
-    padding: 2px 10px;
-    margin: 3px;
   }
 }
 
