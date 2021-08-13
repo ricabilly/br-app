@@ -20,7 +20,7 @@
       :boulder="entry"
     ></BoulderListEntry>
   </div>
-  <div class="add-button" @click="toAddBoulderView"></div>
+  <img class="add-button" @click="toAddBoulderView" src="@/assets/add-button.png" alt="add-boulder-button">
 </div>
 </template>
 <script>
@@ -85,7 +85,7 @@ export default {
   position: fixed;
   bottom: 15%;
   right: 15%;
-  background-color: lightblue;
+  background-color: hsl(177, 51%, 37%);
   width: 4rem;
   height: 4rem;
   border-radius: 100%;

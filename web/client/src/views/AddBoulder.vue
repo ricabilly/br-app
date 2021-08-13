@@ -48,7 +48,7 @@ export default {
             tags: [],
             image: null,
             creator: "",
-            rating: 0,
+            rating: -1,
             sector: "",
             color: "",
             description: "",
@@ -111,7 +111,7 @@ export default {
 
 .boulder-form {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
     text-align: left;
     margin-left: 10%;
 }

@@ -19,7 +19,7 @@
       </div>
 
       <div id="rating">
-         	{{ boulder.rating }}&#10084;
+        {{ computedRating }}&#10084;
       </div>
 
       <div id="tags">
@@ -41,6 +41,11 @@ export default {
       isActive: false,
     };
   },
+  computed: {
+    computedRating() {
+      return this.boulder.rating < 0 ? "-" : this.boulder.rating;
+    }
+  }
 };
 </script>
 <style lang="scss">

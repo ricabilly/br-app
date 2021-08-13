@@ -1,6 +1,11 @@
 <template>
   <div id="app-wrapper">
-    <router-view />
+    <router-view v-slot="{Component}">
+      <transition name="fade" mode="out-in">
+        <component :is="Component" :key="$route.path"></component>
+      </transition>
+    </router-view>
+
     <div id="nav">
       <router-link to="/">Übersicht</router-link>
       <router-link to="/grundriss">Grundriss</router-link>
@@ -33,7 +38,7 @@ export default {
 <style lang="scss">
 $bgcolor: hsl(0, 0%, 97%);
 $fontcolor: hsl(210, 29%, 24%);
-$highlightcolor: hsl(153, 47%, 49%);
+$highlightcolor: hsl(138, 29%, 24%);
 
 body {
   margin: 0;
@@ -88,5 +93,15 @@ a {
   max-width: 960px;
   margin: auto;
   padding: 10px 15px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.1s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
