@@ -85,11 +85,14 @@ export default {
   position: fixed;
   bottom: 15%;
   right: 15%;
-  background-color: hsl(177, 51%, 37%);
   width: 4rem;
   height: 4rem;
   border-radius: 100%;
   box-shadow: 0 0 3px lightgray;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 </style>

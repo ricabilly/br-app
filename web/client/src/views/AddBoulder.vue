@@ -82,12 +82,12 @@ export default {
             }
 
             let boulder = {
-                id: 1,
+                id: -1,
                 name: this.bname,
                 difficulty: this.diff,
                 tags: this.tags,
                 image: this.image,
-                date: null,
+                date: "",
                 creator: this.creator,
                 rating: this.rating,
                 sector: this.sector,

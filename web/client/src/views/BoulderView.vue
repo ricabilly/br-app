@@ -2,6 +2,7 @@
   <div class="boulder-view">
     <h1 class="title">{{boulder.name}}</h1>
     <span class="creator">by {{boulder.creator}}</span>
+    <p v-for="(e, i) in entries" :key="i">{{e}}</p>
   </div>
 </template>
 <script>
@@ -12,7 +13,10 @@ export default {
   },
   computed: {
       boulder() {
-          return this.$store.getters.getBoulder(this.$route.params.id);
+        return this.$store.getters.getBoulder(this.$route.params.id);
+      },
+      entries() {
+        return Object.entries(this.boulder);
       }
   }
 };

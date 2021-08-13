@@ -14,12 +14,13 @@
         <span>- {{ boulder.creator }}</span>
       </div>
 
-      <div id="difficulty">
-        {{ boulder.difficulty }}
-      </div>
-
-      <div id="rating">
-        {{ computedRating }}&#10084;
+      <div class="lower-part">
+        <div id="difficulty">
+          {{ boulder.difficulty }}
+        </div>
+        <div id="rating">
+          {{ computedRating }}&#10084;
+        </div>
       </div>
 
       <div id="tags">
@@ -79,13 +80,18 @@ export default {
     margin: 3px 0 3px 3px;
   }
 
-  #difficulty {
-    float: left;
+  .lower-part {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    #difficulty {
+    }
+
+    #rating {
+    }
   }
 
-  #rating {
-    float: right;
-  }
+  
 
   #tags {
     display: none;
