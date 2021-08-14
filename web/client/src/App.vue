@@ -9,7 +9,7 @@
     <div id="nav">
       <router-link to="/">Übersicht</router-link>
       <router-link to="/grundriss">Grundriss</router-link>
-      <router-link to="/login">Login</router-link>
+      <router-link to="/login">{{loggedIn ? "Profil" : "Login"}}</router-link>
     </div>
   </div>
 </template>
@@ -23,6 +23,11 @@ export default {
   },
   methods: {
     
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.getters.loggedIn;
+    },
   },
   created() {
     this.$store.dispatch('loadBoulders');

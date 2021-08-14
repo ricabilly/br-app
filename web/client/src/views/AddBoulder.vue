@@ -96,7 +96,7 @@ export default {
                 comments: []
             }
 
-            this.$store.commit('addBoulder', boulder);
+            this.$store.dispatch('addBoulder', boulder);
             alert(this.bname + " wurde hinzugefügt");
             this.$router.push("/");
         },
