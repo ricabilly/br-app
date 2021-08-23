@@ -3,9 +3,10 @@ import { nonEmpty } from "@/util/utils";
 import { API_URL } from '..';
 
 const state = {
-  user: {},
+  user: null,
   isLoading: false,
-  
+  error: null,
+
 };
 
 const mutations = {
@@ -14,36 +15,42 @@ const mutations = {
   },
   updateJWT(state, jwt) {
     state.user.jwt = jwt;
+  },
+  setError(state, error) {
+    state.error = error;
   }
 }
 
 const actions = {
-  login({ commit }, username, password) {
+  async login({ commit }, username, password) {
     if(nonEmpty(state.user)) {
       alert("Already logged in!")
       return
     }
     let credentials = btoa(username + ":" + password);
-    let user;
-    try {
-      user = loginCall(API_URL, credentials);
-    } catch (error) {
-      alert("Failed to log in!");
-      return
+    let user = await loginCall(API_URL, credentials);
+    if(user == null) {
+      commit("setError", "Login failed");
     }
     commit('updateUser', user);
   },
   logout({ commit }) {
-    commit('updateUser', {});
+    commit('updateUser', null);
+  },
+  clearError({ commit }) {
+    commit("setError", null);
   }
 }
 
 const getters = {
   loggedIn: (state) => {
-    return state.user && Object.keys(state.user).length > 0;
+    return state.user != null;
   },
   user: (state) => {
     return state.user;
+  },
+  loginErrorOccured: (state) => {
+    return state.error != null;
   }
 }
 

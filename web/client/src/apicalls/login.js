@@ -1,4 +1,4 @@
-export async function  call(url, credentials) {
+export async function call(url, credentials) {
     let endpoint = "/user/login";
     let response;
     try {
@@ -13,7 +13,7 @@ export async function  call(url, credentials) {
             alert("Login failed! Code " + response.status);
             return null;
         }
-        let user = response.json();
+        let user = await response.json();
         return user; 
     } catch (error) {
         console.log("Failed to connect to API");

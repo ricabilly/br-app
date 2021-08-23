@@ -5,6 +5,7 @@ import { API_URL } from "..";
 const state = {
   boulders: [],
   isLoading: false,
+  error: null,
   
 }
 
@@ -14,6 +15,9 @@ const mutations = {
   },
   addBoulder(state, boulder) {
     state.boulders.push(boulder);
+  },
+  setError(state, error) {
+    state.error = error;
   },
 }
 
@@ -28,7 +32,13 @@ const actions = {
     let newBoulder = await boulderCall(API_URL, boulder);
     if(nonEmpty(newBoulder)) {
       commit('addBoulder', newBoulder);
+      this.$router.push("/");
+    } else {
+      commit('setError', "Failed to add boulder")
     }
+  },
+  clearError({ commit }) {
+    commit("setError", null);
   },
 }
 
@@ -57,6 +67,9 @@ const getters = {
   getBoulder: (state) => (id) => {
     return state.boulders.find(el => el.id == id);
   },
+  boulderErrorOccured: (state) => {
+    return state.error != null;
+  }
 }
 
 export const bouldersModule = {

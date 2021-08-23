@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <h1>Boulder hinzufügen</h1>
-        <div class="boulder-form">
+        <form v-if="!errorOccured" class="boulder-form" @submit.prevent="submitBoulder">
             <label for="name">Name</label>
             <input v-model="bname" name="name" placeholder="Name">
 
@@ -32,7 +32,11 @@
             <label for="image">Image</label>
             <input name="image" type="file" accept="image/*" @change="imgUploaded">
 
-            <button class="submit-button" @click="submitBoulder">Fertig</button>
+            <input class="submit-button" type="submit" value="Fertig">
+        </form>
+        <div v-else class="boulder-form-error">
+            <span>Failed to add boulder!</span>
+            <button class="submit-button" @click="clearError">Nächster Versuch</button>
         </div>
     </div>
 </template>
@@ -95,14 +99,19 @@ export default {
                 description: this.description,
                 comments: []
             }
-
             this.$store.dispatch('addBoulder', boulder);
-            alert(this.bname + " wurde hinzugefügt");
-            this.$router.push("/");
         },
         imgUploaded(e) {
             this.image = e.target.files[0];
             console.log(this.image);
+        },
+        clearError() {
+            this.$store.dispatch("clearError");
+        }
+    },
+    computed: {
+        errorOccured() {
+            return this.$store.getters.boulderErrorOccured;
         }
     },
 }
@@ -114,19 +123,33 @@ export default {
     grid-template-columns: repeat(2, minmax(150px, 1fr));
     text-align: left;
     margin-left: 10%;
+
+    input {
+    margin-bottom: 1rem;
+
+    }
+
+    select {
+        margin-bottom: 1rem;
+    }
+
+    .submit-button {
+        grid-column: 1 / 3;
+        width: 90%;
+    }
 }
     
-input {
-    margin-bottom: 1rem;
 
-}
+.boulder-form-error {
+    display: grid;
+    width: 80%;
+    color: red;
+    font-weight: bold;
+    margin: auto;
 
-select {
-    margin-bottom: 1rem;
-}
-
-.submit-button {
-    grid-column: 1 / 3;
-    width: 90%;
+    span {
+       padding: 1rem;
+       display: block;
+    }
 }
 </style>
