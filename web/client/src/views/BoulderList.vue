@@ -8,7 +8,7 @@
         <option value="rating">Bewertung</option>
       </optgroup>
     </select>
-    <input v-model="searchText">
+    <input v-model="searchText" placeholder="Suche">
   </div>
   <div v-if="filteredBoulders.length === 0" class="no-boulder-list">
       <span>No boulders found.</span>

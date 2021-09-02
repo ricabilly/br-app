@@ -1,7 +1,12 @@
-install:
-	go get -u github.com/gorilla/mux
-	
-build-dev:
-	docker build --target dev docker -t go
-dev:
-	docker run -it -v ~/Documents/personal/projects/chalkwarts:/work -p 3000:3000 go sh
+build:
+	docker-compose build
+
+run:
+	echo "Starting database"
+	docker-compose up -d mysql
+	timeout 5
+	echo "Starting api and webserver"
+	docker-compose up -d
+
+stop:
+	docker-compose down

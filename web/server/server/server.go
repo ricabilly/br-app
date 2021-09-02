@@ -1,7 +1,7 @@
 package server
 
 import (
-	RouterFactory "br-app/web/router"
+	RouterFactory "br-app/web/server/router"
 	"log"
 	"net/http"
 	"strconv"

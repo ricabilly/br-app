@@ -4,15 +4,6 @@
 			"path": "./web/client"
 		},
 		{
-			"path": "./web"
-		},
-		{
-			"path": "./api"
-		},
-		{
-			"path": "./docker"
-		},
-		{
 			"path": "."
 		}
 		

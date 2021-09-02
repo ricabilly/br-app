@@ -106,12 +106,12 @@ export default {
             console.log(this.image);
         },
         clearError() {
-            this.$store.dispatch("clearError");
+            this.$store.dispatch("clearAddBoulderError");
         }
     },
     computed: {
         errorOccured() {
-            return this.$store.getters.boulderErrorOccured;
+            return this.$store.getters.addBoulderErrorOccured;
         }
     },
 }

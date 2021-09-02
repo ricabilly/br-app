@@ -1,5 +1,6 @@
 <template>
   <div id="app-wrapper">
+    <div v-for="e in errors" :key="e" id="error-banner">{{e}}</div>
     <router-view v-slot="{Component}">
       <transition name="fade" mode="out-in">
         <component :is="Component" :key="$route.path"></component>
@@ -28,10 +29,14 @@ export default {
     loggedIn() {
       return this.$store.getters.loggedIn;
     },
+    errors() {
+      return this.$store.getters.errors;
+    }
   },
   created() {
     this.$store.dispatch('loadBoulders');
   },
+  
 };
 </script>
 

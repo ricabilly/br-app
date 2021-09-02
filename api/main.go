@@ -7,7 +7,7 @@ import (
 var port int
 
 func init() {
-	port = 3000
+	port = 8084
 }
 
 func main() {

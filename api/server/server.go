@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"strconv"
 	"time"
+
+	"github.com/gorilla/handlers"
 )
 
 // Server object type
@@ -27,11 +29,13 @@ func NewServer(port int) *Server {
 
 	router := RouterFactory.NewRouter()
 
+	//TODO CORS <---------------------------
+
 	server.Port = port
 	server.Addr = ":" + strconv.Itoa(port)
 	server.HTTPServer = &http.Server{
 		Addr:         server.Addr,
-		Handler:      router,
+		Handler:      handlers.CORS(handlers.AllowedOrigins([]string{"*"}))(router),
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 10 * time.Second,
 	}

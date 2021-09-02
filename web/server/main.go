@@ -1,13 +1,13 @@
 package main
 
 import (
-	ServerFactory "br-app/web/server"
+	ServerFactory "br-app/web/server/server"
 )
 
 var port int
 
 func init() {
-	port = 3000
+	port = 80
 }
 
 func main() {

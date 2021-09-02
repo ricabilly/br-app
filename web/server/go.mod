@@ -1,4 +1,4 @@
-module br-app/web
+module br-app/web/server
 
 go 1.16
 

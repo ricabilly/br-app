@@ -1,11 +1,12 @@
 import { nonEmpty } from "@/util/utils";
-import { call as boulderCall } from '@/apicalls/editBoulder.js';
+import { call as editBoulderCall } from '@/apicalls/editBoulder.js';
+import { call as getBouldersCall } from '@/apicalls/getBoulders.js';
 import { API_URL } from "..";
 
 const state = {
   boulders: [],
   isLoading: false,
-  error: null,
+  addBoulderError: null,
   
 }
 
@@ -16,29 +17,32 @@ const mutations = {
   addBoulder(state, boulder) {
     state.boulders.push(boulder);
   },
-  setError(state, error) {
-    state.error = error;
+  setAddBoulderError(state, error) {
+    state.addBoulderError = error;
   },
 }
 
 const actions = {
-  loadBoulders({ commit }) {
-    let boulders = require("@/data/mockdata.json");
-    commit('updateBoulders', boulders);
+  async loadBoulders({ commit }) {
+    let boulders = await getBouldersCall(API_URL);
+    if(nonEmpty(boulders)) {
+      commit('updateBoulders', boulders);
+    } else {
+      commit('setError', "Failed to fetch boulders")
+    }
   },
   async addBoulder({ commit }, boulder) {
     let date = new Date().toISOString();
     boulder.date = date;
-    let newBoulder = await boulderCall(API_URL, boulder);
+    let newBoulder = await editBoulderCall(API_URL, boulder);
     if(nonEmpty(newBoulder)) {
       commit('addBoulder', newBoulder);
-      this.$router.push("/");
     } else {
-      commit('setError', "Failed to add boulder")
+      commit('setAddBoulderError', "Failed to add boulder")
     }
   },
-  clearError({ commit }) {
-    commit("setError", null);
+  clearAddBoulderError({ commit }) {
+    commit("setAddBoulderError", null);
   },
 }
 
@@ -67,8 +71,8 @@ const getters = {
   getBoulder: (state) => (id) => {
     return state.boulders.find(el => el.id == id);
   },
-  boulderErrorOccured: (state) => {
-    return state.error != null;
+  addBoulderErrorOccured: (state) => {
+    return state.addBoulderError != null;
   }
 }
 

@@ -5,7 +5,6 @@ import { API_URL } from '..';
 const state = {
   user: null,
   isLoading: false,
-  error: null,
 
 };
 
