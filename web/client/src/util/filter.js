@@ -39,7 +39,9 @@ export function getMatches(text, boulders) {
     
 
     slices.forEach((val, i) => {
-        if(contains(sectors, val) && i > 0 && (slices[i-1] == "SEKTOR" || slices[i-1] == "SECTOR")) {
+        if(val == "") {
+            return
+        } else if(contains(sectors, val) && i > 0 && (slices[i-1] == "SEKTOR" || slices[i-1] == "SECTOR")) {
             sector.push(val);
         } else if(contains(colors, val)) {
             color.push(val);
@@ -53,10 +55,11 @@ export function getMatches(text, boulders) {
     return boulders.filter((val) => {
 
         let creatorMatch = false;
+        let clonedTags = [...tags]
 
-        for(let i in tags) {
-            if(tags[i] == val.creator.toUpperCase()) {
-                tags.splice(i, 1);
+        for(let i = 0; i < clonedTags.length; i++) {
+            if(clonedTags[i] == val.creator.toUpperCase()) {
+                clonedTags.splice(i, 1);
                 creatorMatch = true;
             }
         }
@@ -64,6 +67,6 @@ export function getMatches(text, boulders) {
         return contains(color, val.color.toUpperCase()) 
             && contains(sector, val.sector.toUpperCase()) 
             && contains(difficulty, val.difficulty.toUpperCase())
-            && (tags.length === 0 || creatorMatch || contains(val.name.toUpperCase(), tags.join(" ")));
+            && (clonedTags.length === 0 || creatorMatch || contains(val.name.toUpperCase(), tags.join(" ")));
     });
 }

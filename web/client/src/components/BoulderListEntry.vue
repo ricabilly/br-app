@@ -50,11 +50,15 @@ export default {
 };
 </script>
 <style lang="scss">
+@import "@/assets/_variables.scss";
+
 .entry {
   box-shadow: 0 0 2px;
   border-radius: 5px;
   transition: 50ms ease;
   text-align: left;
+  background-color: $secondary;
+  
 
   a {
     padding: 10px;
@@ -63,7 +67,7 @@ export default {
   }
 
   &.is-active {
-    background-color: hsla(0, 0%, 92%, 0.788);
+    
     box-shadow: 2px 1px 7px;
   }
 
@@ -94,8 +98,7 @@ export default {
   }
 
   .tag {
-    color: white;
-    background-color: red;
+    background-color: $secondary;
     padding: 2px 6px;
     border: 1px solid grey;
     border-radius: 5px;

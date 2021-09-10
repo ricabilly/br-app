@@ -3,6 +3,7 @@ package db
 // User data model
 type User struct {
 	Id        int64  `json:"id"`
+	Username  string `json:"username"`
 	Firstname string `json:"firstname"`
 	Lastname  string `json:"lastname"`
 	Password  string `json:"password,omitempty"`
@@ -20,6 +21,7 @@ type Boulder struct {
 	Date        string     `json:"date"`
 	Sector      string     `json:"sector"`
 	Image       string     `json:"image"`
+	Tags        []string   `json:"tags"`
 	Comments    []*Comment `json:"comments"`
 }
 

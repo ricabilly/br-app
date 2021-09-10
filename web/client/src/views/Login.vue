@@ -2,10 +2,11 @@
   <div class="container">
     <h1>Login</h1>
     <form v-if="!loggedIn && !errorOccured" class="login-form" @submit.prevent="submitForm">
-      <input name="username" type="text" v-bind="username" placeholder="Username">
-      <input name="password" type="password" v-bind="password" placeholder="Passwort">
+      <input name="username" type="text" v-model="username" placeholder="Username">
+      <input name="password" type="password" v-model="password" placeholder="Passwort">
       <input class="submit-button" type="submit" value="Anmelden">
     </form>
+    
     <div v-else-if="errorOccured" class="login-error">
       <h2>Failed to login!</h2>
       <button class="clear-error" @click="clearError">Nächster Versuch</button>
@@ -27,24 +28,25 @@ export default {
   },
   methods: {
     submitForm() {
-      this.$store.dispatch("login", this.username, this.password);
-    },
-    logout() {
-      this.$store.dispatch("logout");
+      if(this.username == "" || this.password == "") {
+        alert("Bitte Username und Passwort angeben!");
+        return
+      }
+      this.$store.dispatch("user/login", { username: this.username, password: this.password});
     },
     clearError() {
-      this.$store.dispatch("clearError");
+      this.$store.dispatch("user/clearError");
     }
   },
   computed: {
     loggedIn() {
-      return this.$store.getters.loggedIn;
+      return this.$store.getters["user/loggedIn"];
     },
     user() {
-      return this.$store.getters.user;
+      return this.$store.getters["user/getUser"];
     },
     errorOccured() {
-      return this.$store.getters.loginErrorOccured;
+      return this.$store.getters["user/errorOccured"];
     }
   }
 };

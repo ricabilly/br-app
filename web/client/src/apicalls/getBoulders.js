@@ -1,10 +1,20 @@
-export async function call(url) {
+export async function call(url, token) {
   let endpoint = "/boulder";
-  return fetch(url + endpoint)
-    .then(res => {
+  return fetch(url + endpoint, {
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((res) => {
+      if (res.ok) {
         return res.json();
-    })  
-    .then(data => data)
-    .catch(err => console.log("ERROR: " + err));
-      
-};
+      } else {
+        return null;
+      }
+    })
+    .then((data) => data)
+    .catch(err => {
+      console.log("ERROR: " + err);
+      return null;
+  });
+}

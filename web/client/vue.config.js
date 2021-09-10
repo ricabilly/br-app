@@ -4,5 +4,8 @@ module.exports = {
   },
   devServer: {
     proxy: 'http://localhost',
-  }
+  },
+  configureWebpack: {
+    devtool: 'source-map',
+  },
 };

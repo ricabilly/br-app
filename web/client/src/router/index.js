@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
-import BoulderList from "@/views/BoulderList.vue";
+import Home from "@/views/Home";
 
 const routes = [
   {
     path: "/",
-    name: "BoulderList",
-    component: BoulderList,
+    name: "Home",
+    component: Home,
   },
   {
     path: "/grundriss",
@@ -14,22 +14,40 @@ const routes = [
       import(/* webpackChunkName: "grundriss" */ "@/views/Grundriss.vue"),
   },
   {
-    path: "/login",
-    name: "Login",
+    path: "/profil",
+    name: "Profil",
     component: () =>
-      import(/* webpackChunkName: "login" */ "@/views/Login.vue"),
+      import(/* webpackChunkName: "profil" */ "@/views/Profil.vue"),
   },
   {
-    path: "/boulder/view/:id",
-    name: "Boulder View",
+    path: "/boulder",
+    name: "Boulder",
     component: () =>
-      import(/* webpackChunkName: "boulder-view" */ "@/views/BoulderView.vue"),
-  },
-  {
-    path: "/boulder/add",
-    name: "Add Boulder",
-    component: () =>
-      import(/* webpackChunkName: "add-boulder" */ "@/views/AddBoulder.vue"),
+      import(/* webpackChunkName: "boulder" */ "@/views/Boulder.vue"),
+    children: [
+      {
+        path: "",
+        name: "Boulder List",
+        component: () =>
+          import(/* webpackChunkName: "boulder-list" */ "@/components/BoulderList.vue"),
+      },
+      {
+        path: "view/:id",
+        name: "Boulder View",
+        component: () =>
+          import(
+            /* webpackChunkName: "boulder-view" */ "@/components/BoulderView.vue"
+          ),
+      },
+      {
+        path: "add",
+        name: "Add Boulder",
+        component: () =>
+          import(
+            /* webpackChunkName: "add-boulder" */ "@/components/AddBoulder.vue"
+          ),
+      },
+    ],
   },
 ];
 

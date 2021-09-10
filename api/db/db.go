@@ -50,7 +50,7 @@ func GetBoulders() ([]*Boulder, error) {
 		return nil, err
 	}
 	var boulders []*Boulder
-	comments, err := getComments()
+	comments, err := GetComments()
 	if err != nil {
 		return nil, err
 	}
@@ -112,7 +112,7 @@ func EditBoulder(boulder *Boulder) (*Boulder, error) {
 
 // getComments fetches all comments from the database.
 // It returns a slice of Comment objects.
-func getComments() ([]*Comment, error) {
+func GetComments() ([]*Comment, error) {
 	result, err := client.Query("SELECT * FROM comments")
 	if err != nil {
 		return nil, err
@@ -141,7 +141,7 @@ func getComments() ([]*Comment, error) {
 
 // editComment updates a comment record or inserts a new one.
 // It returns false if a new comment was added and true if an existing one was updated.
-func editComment(comment *Comment) (bool, error) {
+func EditComment(comment *Comment) (bool, error) {
 	if comment.Id < 0 {
 		_, err := client.Exec("INSERT INTO comments (boulderId, author, content, date) VALUES (?, ? ,?, ?) ",
 			comment.BoulderId, comment.Author, comment.Content, comment.Date)
@@ -156,7 +156,7 @@ func editComment(comment *Comment) (bool, error) {
 
 // getUsers fetches all users from the database.
 // It returns a slice of User objects.
-func getUsers() ([]*User, error) {
+func GetUsers() ([]*User, error) {
 	result, err := client.Query("SELECT * FROM users")
 	if err != nil {
 		return nil, err
@@ -181,10 +181,10 @@ func getUsers() ([]*User, error) {
 	return users, nil
 }
 
-// getUser fetches a specific user based on their id.
+// getUser fetches a specific user based on their username.
 // It returns a User object.
-func getUser(id int64) (*User, error) {
-	result, err := client.Query("SELECT * FROM users WHERE id = ?", id)
+func GetUser(username string) (*User, error) {
+	result, err := client.Query("SELECT * FROM users WHERE username = ?", username)
 	if err != nil {
 		return nil, err
 	}
@@ -193,6 +193,7 @@ func getUser(id int64) (*User, error) {
 	for result.Next() {
 		err := result.Scan(
 			&user.Id,
+			&user.Username,
 			&user.Firstname,
 			&user.Lastname,
 			&user.Password,
@@ -207,15 +208,15 @@ func getUser(id int64) (*User, error) {
 
 // editUser updates a user record or inserts a new one.
 // It returns false if a new user was added and true if an existing one was updated.
-func editUser(user *User) (bool, error) {
+func EditUser(user *User) (bool, error) {
 	if user.Id < 0 {
-		_, err := client.Exec("INSERT INTO users (firstname, lastname, password) VALUES (?, ? ,?) ",
-			user.Firstname, user.Lastname, user.Password)
+		_, err := client.Exec("INSERT INTO users (username, firstname, lastname, password) VALUES (?, ?, ? ,?) ",
+			user.Username, user.Firstname, user.Lastname, user.Password)
 		return false, err
 
 	} else {
-		_, err := client.Exec("UPDATE users SET firstname=?, lastname=?, password=? WHERE id = ?",
-			user.Firstname, user.Lastname, user.Password, user.Id)
+		_, err := client.Exec("UPDATE users SET username=?, firstname=?, lastname=?, password=? WHERE id = ?",
+			user.Username, user.Firstname, user.Lastname, user.Password, user.Id)
 		return true, err
 	}
 }

@@ -29,13 +29,14 @@ func NewServer(port int) *Server {
 
 	router := RouterFactory.NewRouter()
 
-	//TODO CORS <---------------------------
-
 	server.Port = port
 	server.Addr = ":" + strconv.Itoa(port)
 	server.HTTPServer = &http.Server{
-		Addr:         server.Addr,
-		Handler:      handlers.CORS(handlers.AllowedOrigins([]string{"*"}))(router),
+		Addr: server.Addr,
+		Handler: handlers.CORS(
+			handlers.AllowedOrigins([]string{"*"}),
+			handlers.AllowedHeaders([]string{"Content-type", "Authorization", "Authentication"}),
+		)(router),
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 10 * time.Second,
 	}

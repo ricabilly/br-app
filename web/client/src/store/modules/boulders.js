@@ -5,9 +5,7 @@ import { API_URL } from "..";
 
 const state = {
   boulders: [],
-  isLoading: false,
-  addBoulderError: null,
-  
+  error: null,
 }
 
 const mutations = {
@@ -17,66 +15,73 @@ const mutations = {
   addBoulder(state, boulder) {
     state.boulders.push(boulder);
   },
-  setAddBoulderError(state, error) {
-    state.addBoulderError = error;
-  },
+  setError(state, err) {
+    state.error = err;
+  }
 }
 
 const actions = {
-  async loadBoulders({ commit }) {
-    let boulders = await getBouldersCall(API_URL);
+  async loadBoulders({ commit, dispatch, rootState }) {
+    dispatch("startLoading", null, {root: true});
+    let boulders = await getBouldersCall(API_URL, rootState.user.token);
     if(nonEmpty(boulders)) {
       commit('updateBoulders', boulders);
-    } else {
-      commit('setError', "Failed to fetch boulders")
     }
+    dispatch("stopLoading", null, {root: true});
   },
-  async addBoulder({ commit }, boulder) {
-    let date = new Date().toISOString();
-    boulder.date = date;
-    let newBoulder = await editBoulderCall(API_URL, boulder);
+  async addBoulder({ commit, dispatch, rootState }, boulder) {
+    dispatch("startLoading", null, {root: true});
+    let newBoulder = await editBoulderCall(API_URL, rootState.user.token, boulder);
     if(nonEmpty(newBoulder)) {
       commit('addBoulder', newBoulder);
     } else {
-      commit('setAddBoulderError', "Failed to add boulder")
+      dispatch('setError', "ERROR");
+      dispatch("stopLoading", null, {root: true});
+      return
     }
+    dispatch("stopLoading", null, {root: true});
+    dispatch("setSuccess", true, {root: true});
   },
-  clearAddBoulderError({ commit }) {
-    commit("setAddBoulderError", null);
-  },
+  setError({ commit }, err) {
+    commit("setError", err);
+  }
 }
 
 const getters = {
   getBoulders: (state) => (sortBy) => {
-    let comp;
-    switch(sortBy) {
-      case "difficulty":
-        comp = function (a, b) {
-          return +(a.difficulty.slice(1).replace("-", ".")) - (+(b.difficulty.slice(1).replace("-", ".")));
-        };
-        break;
-      case "rating":
-        comp = function (a, b) {
-          return b.rating - a.rating;
-        };
-        break;
-      case "date":
-      default:
-        comp = function (a, b) {
-          return new Date(a.date) > new Date(b.date) ? 1 : -1;
-        };
+    if(state.boulders.length > 1) {
+      let comp;
+      switch(sortBy) {
+        case "difficulty":
+          comp = function (a, b) {
+            return +(a.difficulty.slice(1).replace("-", ".")) - (+(b.difficulty.slice(1).replace("-", ".")));
+          };
+          break;
+        case "rating":
+          comp = function (a, b) {
+            return b.rating - a.rating;
+          };
+          break;
+        case "date":
+        default:
+          comp = function (a, b) {
+            return new Date(a.date) > new Date(b.date) ? 1 : -1;
+          };
+      }
+      state.boulders.sort(comp);
     }
-    return state.boulders.sort(comp);
+    return state.boulders;
   },
   getBoulder: (state) => (id) => {
     return state.boulders.find(el => el.id == id);
   },
-  addBoulderErrorOccured: (state) => {
-    return state.addBoulderError != null;
+  errorOccured: (state) => {
+    return state.error != null;
   }
 }
 
 export const bouldersModule = {
+  namespaced: true,
   state: state,
   mutations: mutations,
   actions: actions,

@@ -4,56 +4,69 @@ import { API_URL } from '..';
 
 const state = {
   user: null,
-  isLoading: false,
-
+  error: null,
+  token: null,
 };
 
 const mutations = {
   updateUser(state, user) {
     state.user = user;
   },
-  updateJWT(state, jwt) {
-    state.user.jwt = jwt;
+  updateToken(state, token) {
+    state.token = token;
   },
   setError(state, error) {
     state.error = error;
-  }
+  },
 }
 
 const actions = {
-  async login({ commit }, username, password) {
+  async login({ commit, dispatch }, { username, password }) {
+    dispatch("startLoading", null, {root: true});
     if(nonEmpty(state.user)) {
       alert("Already logged in!")
+      dispatch("stopLoading", null, {root: true});
       return
     }
     let credentials = btoa(username + ":" + password);
-    let user = await loginCall(API_URL, credentials);
-    if(user == null) {
+    let jsonData = await loginCall(API_URL, credentials);
+    if(!jsonData) {
       commit("setError", "Login failed");
+    } else {
+      let user = jsonData.user;
+      let token = jsonData.token;
+      commit('updateUser', user);
+      commit('updateToken', token);
     }
-    commit('updateUser', user);
+    dispatch("stopLoading", null, {root: true});
   },
   logout({ commit }) {
     commit('updateUser', null);
+    commit('updateToken', null);
   },
   clearError({ commit }) {
     commit("setError", null);
-  }
+  },
+
 }
 
 const getters = {
   loggedIn: (state) => {
     return state.user != null;
   },
-  user: (state) => {
+  getUser: (state) => {
     return state.user;
   },
-  loginErrorOccured: (state) => {
+  errorOccured: (state) => {
     return state.error != null;
+  },
+  isLoading: (state) => {
+    return state.isLoading == true;
   }
 }
 
 export const userModule = {
+  namespaced: true,
   state: state,
   mutations: mutations,
   actions: actions,
